@@ -32,4 +32,4 @@
 
 | ID | Descripcion | Severidad | Estado | Evidencia |
 |---|---|---|---|---|
-| D-01 | (completar si aparece alguno durante la revision o la regresion) | | | |
+| D-01 |  | | | |
