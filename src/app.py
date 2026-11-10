@@ -1,9 +1,4 @@
-"""Interfaz de linea de comandos de ALIMENTA-IA.
 
-Uso:
-    python -m src.app                 # tablero + alertas
-    python -m src.app Yogur           # filtra por producto
-"""
 import os
 import sys
 

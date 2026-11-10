@@ -3,12 +3,10 @@ from src.produccion import validar_lote
 
 
 def tasa_lote(lote):
-    """Porcentaje de defectos de un lote."""
     return validar_lote(lote["producidas"], lote["defectuosas"])
 
 
 def resumen(lotes):
-    """Resumen general para el tablero."""
     if not lotes:
         return {
             "total_lotes": 0,
@@ -33,7 +31,6 @@ def resumen(lotes):
 
 
 def tablero(lotes):
-    """Texto del tablero con tasa de defectos y conteo de lotes."""
     r = resumen(lotes)
     lineas = [
         "=== TABLERO ALIMENTA-IA ===",

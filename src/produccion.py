@@ -4,7 +4,6 @@ from datetime import date
 
 
 def validar_lote(producidas, defectuosas):
-    """Valida las cantidades de un lote y devuelve el porcentaje de defectos."""
     for valor in (producidas, defectuosas):
         if isinstance(valor, bool) or not isinstance(valor, int):
             raise ValueError("Las cantidades deben ser numeros enteros")
@@ -18,7 +17,6 @@ def validar_lote(producidas, defectuosas):
 
 
 def registrar_lote(lotes, codigo, fecha, producto, producidas, defectuosas, temperatura):
-    """Agrega un lote a la lista `lotes` despues de validarlo y lo devuelve."""
     codigo = str(codigo).strip()
     if not codigo:
         raise ValueError("El codigo de lote es obligatorio")
@@ -48,13 +46,11 @@ def registrar_lote(lotes, codigo, fecha, producto, producidas, defectuosas, temp
 
 
 def filtrar_por_producto(lotes, producto):
-    """Devuelve los lotes de un producto (sin distinguir mayusculas)."""
     buscado = producto.strip().lower()
     return [l for l in lotes if l["producto"].lower() == buscado]
 
 
 def cargar_lotes(ruta):
-    """Lee un CSV de lotes. Si trae la columna es_atipico la conserva como int."""
     lotes = []
     with open(ruta, newline="", encoding="utf-8") as f:
         for fila in csv.DictReader(f):

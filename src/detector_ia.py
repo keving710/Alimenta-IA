@@ -1,8 +1,4 @@
-"""Deteccion de lotes atipicos con IsolationForest (RF-05).
-
-Las alertas son solo apoyo analitico: no sustituyen controles de inocuidad
-ni la evaluacion de un profesional responsable.
-"""
+"""Deteccion de lotes atipicos con IsolationForest (RF-05)."""
 import numpy as np
 from sklearn.ensemble import IsolationForest
 from sklearn.metrics import precision_score, recall_score
@@ -26,7 +22,6 @@ def _matriz(lotes):
 
 
 def entrenar(lotes, contaminacion=CONTAMINACION, semilla=SEMILLA):
-    """Escala las variables y entrena el detector con semilla fija."""
     modelo = make_pipeline(
         StandardScaler(),
         IsolationForest(n_estimators=200, contamination=contaminacion, random_state=semilla),
@@ -36,19 +31,16 @@ def entrenar(lotes, contaminacion=CONTAMINACION, semilla=SEMILLA):
 
 
 def detectar(modelo, lotes):
-    """Devuelve una lista de 0/1 (1 = lote atipico) para cada lote."""
     pred = modelo.predict(_matriz(lotes))
     return [1 if p == -1 else 0 for p in pred]
 
 
 def marcar_lotes(modelo, lotes):
-    """Devuelve copias de los lotes con el campo 'alerta_ia'."""
     marcas = detectar(modelo, lotes)
     return [dict(l, alerta_ia=m) for l, m in zip(lotes, marcas)]
 
 
 def evaluar(lotes, semilla=SEMILLA, prop_prueba=0.3):
-    """Entrena con una parte de los datos y evalua con la otra (necesita es_atipico)."""
     etiquetas = [l["es_atipico"] for l in lotes]
     entrena, prueba = train_test_split(
         lotes, test_size=prop_prueba, random_state=semilla, stratify=etiquetas
