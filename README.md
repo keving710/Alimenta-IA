@@ -30,10 +30,3 @@ python -m src.app Yogur          # filtra por producto
 python -m pytest -q              # pruebas
 python -m pytest --cov=src       # pruebas con cobertura
 ```
-
-## Convenciones
-
-- Ramas: `feature/GH-XX-descripcion`, integradas a `main` solo por Pull Request.
-- Commits: `tipo(GH-XX): descripcion` (feat, fix, test, docs, chore).
-- Un PR no se integra sin pruebas aprobadas y una revision del otro integrante.
-- Versiones: `vMAYOR.MENOR.PARCHE`, con tag anotado.
